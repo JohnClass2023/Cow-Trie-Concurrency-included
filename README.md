@@ -6,26 +6,27 @@ Each node in a trie can have multiple child nodes representing different possibl
 
 The key-value store you will implement can store string keys mapped to values of any type. The value of a key is stored in the node representing the last character of that key (aka terminal node). For example, consider inserting kv pairs ("ab", 1) and ("ac", "val") into the trie.
 
-![](https://notes.sjtu.edu.cn/uploads/upload_b6e9036083fbe8202e19f9d8535e1d81.png)
+<img src="https://notes.sjtu.edu.cn/uploads/upload_b6e9036083fbe8202e19f9d8535e1d81.png" width="300">
 
 
 The two keys share the same parent node. The value 1 corresponding to key "ab" is stored in the left child, and the value "val" corresponding to key "ac" is stored in the right node.
 
 #### Task1 : Copy-On-Write Trie
 
-In this task, you will need to modify src.hpp to implement a copy-on-write trie. In a copy-on-write trie, operations do not directly modify the nodes of the original trie. Instead, new nodes are created for modified data, and a new root is returned for the newly-modified trie. Copy-on-write enables us to access the trie after each operation at any time with minimum overhead. Consider inserting ("ad", 2) in the above example. We create a new Node2 by reusing two of the child nodes from the original tree, and creating a new value node 2. (See figure below)
+In this task, you will need to modify trie.h and trie.cpp to implement a copy-on-write trie. In a copy-on-write trie, operations do not directly modify the nodes of the original trie. Instead, new nodes are created for modified data, and a new root is returned for the newly-modified trie. Copy-on-write enables us to access the trie after each operation at any time with minimum overhead. Consider inserting ("ad", 2) in the above example. We create a new Node2 by reusing two of the child nodes from the original tree, and creating a new value node 2. (See figure below)
 
-![](https://notes.sjtu.edu.cn/uploads/upload_a6b0c1197d5b95610b755fc62b51d66b.png)
+<img src="https://notes.sjtu.edu.cn/uploads/upload_a6b0c1197d5b95610b755fc62b51d66b.png" width="500">
 
 
 If we then insert ("b", 3), we will create a new root, a new node and reuse the previous nodes. In this way, we can get the content of the trie before and after each insertion operation. As long as we have the root object (Trie class), we can access the data inside the trie at that time. (See figure below)
 
-![](https://notes.sjtu.edu.cn/uploads/upload_4a69483f918f61563e53641c1e573ac6.png)
+<img src="https://notes.sjtu.edu.cn/uploads/upload_4a69483f918f61563e53641c1e573ac6.png" width="500">
+
 
 
 One more example: if we then insert ("a", "abc") and remove ("ab", 1), we can get the below trie. Note that parent nodes can have values, and you will need to purge all unnecessary nodes after removal.
 
-![](https://notes.sjtu.edu.cn/uploads/upload_a8b9e344d16516dbcff8586e5db0e255.png)
+<img src="https://notes.sjtu.edu.cn/uploads/upload_a8b9e344d16516dbcff8586e5db0e255.png" width="400">
 
 
 Your trie should support 3 operations:
@@ -42,7 +43,7 @@ For the full specifications of these operations, please refer to the comments in
 
 #### Task2 : Concurrent Key-Value Store
 
-After you have a copy-on-write trie which can be used in a single-thread environment, implement a concurrent key-value store for a multithreaded environment. This key-value store also supports 3 operations:
+After you have a copy-on-write trie which can be used in a single-thread environment, implement a concurrent key-value store for a multithreaded environment. In this task, you will need to modify trie_store.h and trie_store.cpp. This key-value store also supports 3 operations:
 
 1. Get(key) returns the value.
 2. Put(key, value). No return value.
