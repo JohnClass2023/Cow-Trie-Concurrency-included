@@ -58,4 +58,4 @@ Also, if we get a reference to a value from the trie, we should be able to acces
 To achieve this, we have provided you with the pseudo code for TrieStore::Get in src.hpp. Please read it carefully and think of how to implement TrieStore::Put and TrieStore::Remove.
 
 
-acknowledgement: CMU15445 Database Project 0 'Cpp primer'
+Acknowledgement: CMU15445 Database Spring 2023 Project 0 'Cpp Primer'
