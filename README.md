@@ -56,3 +56,6 @@ Your concurrent key-value store should concurrently serve multiple readers and a
 Also, if we get a reference to a value from the trie, we should be able to access it no matter how we modify the trie. The Get function from Trie only returns a pointer. If the trie node storing this value has been removed, the pointer will be dangling. Therefore, in TrieStore, we return a ValueGuard which stores both a reference to the value and the TrieNode corresponding to the root of the trie structure, so that the value can be accessed as we store the ValueGuard.
 
 To achieve this, we have provided you with the pseudo code for TrieStore::Get in src.hpp. Please read it carefully and think of how to implement TrieStore::Put and TrieStore::Remove.
+
+
+acknowledgement: CMU15445 Database Project 0 'Cpp primer'
